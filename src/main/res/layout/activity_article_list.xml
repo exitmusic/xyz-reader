@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:background="@color/theme_primary">
+            android:background="@color/theme_primary_dark">
 
             <ImageView
                 android:layout_width="wrap_content"
