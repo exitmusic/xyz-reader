@@ -11,10 +11,12 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
@@ -49,8 +51,6 @@ public class ArticleDetailFragment extends Fragment implements
     private NestedScrollView mScrollView;
     private ColorDrawable mStatusBarColorDrawable;
 
-    private int mTopInset;
-//    private View mPhotoContainerView;
     private ImageView mPhotoView;
     private int mScrollY;
     private boolean mIsCard = false;
@@ -124,50 +124,53 @@ public class ArticleDetailFragment extends Fragment implements
         return mRootView;
     }
 
-    private void updateStatusBar() {
-        int color = 0;
-        if (mPhotoView != null && mTopInset != 0 && mScrollY > 0) {
-            float f = progress(mScrollY,
-                    mStatusBarFullOpacityBottom - mTopInset * 3,
-                    mStatusBarFullOpacityBottom - mTopInset);
-            color = Color.argb((int) (255 * f),
-                    (int) (Color.red(mMutedColor) * 0.9),
-                    (int) (Color.green(mMutedColor) * 0.9),
-                    (int) (Color.blue(mMutedColor) * 0.9));
-        }
-        mStatusBarColorDrawable.setColor(color);
-    }
+//    private void updateStatusBar() {
+//        int color = 0;
+//        if (mPhotoView != null && mTopInset != 0 && mScrollY > 0) {
+//            float f = progress(mScrollY,
+//                    mStatusBarFullOpacityBottom - mTopInset * 3,
+//                    mStatusBarFullOpacityBottom - mTopInset);
+//            color = Color.argb((int) (255 * f),
+//                    (int) (Color.red(mMutedColor) * 0.9),
+//                    (int) (Color.green(mMutedColor) * 0.9),
+//                    (int) (Color.blue(mMutedColor) * 0.9));
+//        }
+//        mStatusBarColorDrawable.setColor(color);
+//    }
 
-    static float progress(float v, float min, float max) {
-        return constrain((v - min) / (max - min), 0, 1);
-    }
-
-    static float constrain(float val, float min, float max) {
-        if (val < min) {
-            return min;
-        } else if (val > max) {
-            return max;
-        } else {
-            return val;
-        }
-    }
+//    static float progress(float v, float min, float max) {
+//        return constrain((v - min) / (max - min), 0, 1);
+//    }
+//
+//    static float constrain(float val, float min, float max) {
+//        if (val < min) {
+//            return min;
+//        } else if (val > max) {
+//            return max;
+//        } else {
+//            return val;
+//        }
+//    }
 
     private void bindViews() {
         if (mRootView == null) {
             return;
         }
 
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar);
+        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        //bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
             titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            collapsingToolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+
             bylineView.setText(Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
