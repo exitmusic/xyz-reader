@@ -13,9 +13,10 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="@color/theme_primary_dark"
             android:fitsSystemWindows="true">
 
             <ImageView
@@ -45,8 +46,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/meta_bar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="55dp"
                 android:layout_gravity="bottom"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin">
 
             </android.support.v7.widget.Toolbar>
