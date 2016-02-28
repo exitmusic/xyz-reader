@@ -35,7 +35,7 @@ import com.example.xyzreader.data.ArticleLoader;
 public class ArticleDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "ArticleDetailFragment";
-    
+
     public static final String ARG_ITEM_ID = "item_id";
 
     private Cursor mCursor;
@@ -134,7 +134,7 @@ public class ArticleDetailFragment extends Fragment implements
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
             titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            collapsingToolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            //collapsingToolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
 
             bylineView.setText(Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
