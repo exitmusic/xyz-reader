@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:padding="20dp"
+                android:padding="@dimen/detail_inner_horiz_margin"
                 android:orientation="vertical"
                 android:background="@drawable/article_title_gradient">
 
@@ -66,14 +66,14 @@
 
             <TextView
                 android:id="@+id/article_body"
-                style="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:fontFamily="sans-serif-thin"
                 android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
                 android:layout_marginRight="@dimen/detail_inner_horiz_margin"
+                android:paddingTop="20dp"
                 android:paddingBottom="@dimen/detail_body_bottom_margin"
-                android:textColor="@color/blue_grey_900"
+                android:textColor="#000000"
                 android:textColorLink="@color/theme_accent"
                 android:textSize="@dimen/detail_body_text_size"
                 android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
@@ -83,8 +83,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/share_fab"
-        android:stateListAnimator="@anim/fab_state_list_anim"
-        android:background="@drawable/add_fab_background"
+        app:backgroundTint="@color/theme_accent"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
